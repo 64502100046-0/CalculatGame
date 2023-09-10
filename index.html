@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="border rounded mt-5 mx-5">
+    <div class="row">
+        <div class="col-12"><h1>ฝึกคิดเลข</h1></div>
+        <div class="col-12"><h2 id="score">คะแนน: 0</h2></div>
+        <div class="col-12"><h2 id="MaxScore">ข้อที่: 0</h2></div>
+        <div class="col-2"><h3 id="num1">0</h3></div>
+        <div class="col-2"><h3 id="operator">+</h3></div>
+        <div class="col-2"><h3 id="num2">0</h3></div>
+        <div class="col-2"><h3 id="num2">=</h3></div>
+
+        <div class="col-3"><input id="input" class="form-control form-control-lg" type="text" placeholder="คำตอบคือ?"> </div>
+        
+        <div class="col-12"><h4 id="hint" style="color: gray;">*ต้องตอบทศนิยม 1 ตำแหน่งด้วย</h4></div>
+
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button onclick="checkAnswer()" type="button" class="btn btn-success" id="btn-success" disabled><h2>ส่งคำตอบ</h2></button>
+        </div>
+
+
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button onclick="reset()" type="button" class="btn btn-secondary" id="btn-secondary" disabled><h2>รีเซ็ตคะแนน</h2></button>
+        </div>
+
+        <div class="d-grid gap-2 col-8 mx-auto">
+            <button onclick="random()" class="btn btn-primary" type="button"><h2>สุ่มตัวเลข</h2></button>
+        </div>
+    </div>
+</div>
+    
+
+
+    <script>
+            let score = 0;
+            let MaxScore = 0;
+            let point;
+            let num1;
+            let num2;
+            let oper;
+        function random(){
+            num1 = parseInt((Math.random() * 99) + 1);
+            num2 = parseInt((Math.random() * 99) + 1);
+            oper = parseInt((Math.random() * 4) + 1);
+            console.log(parseInt(num1));
+            console.log(parseInt(oper));
+            console.log(parseInt(num2));
+            document.getElementById("num1").innerHTML = (num1);
+            if(oper === 1){
+                document.getElementById("operator").innerHTML = ("+");
+                result = num1 + num2;
+                result = result.toFixed(1);
+            }else if(oper === 2){
+                document.getElementById("operator").innerHTML = ("-");
+                result = num1 - num2;
+                result = result.toFixed(1);
+            }else if(oper === 3){
+                document.getElementById("operator").innerHTML = ("x");
+                result = num1 * num2;
+                result = result.toFixed(1);
+            }else if(oper === 4){
+                document.getElementById("operator").innerHTML = ("÷");
+                result = num1 / num2;
+                result = result.toFixed(1);
+            }
+            document.getElementById("num2").innerHTML = (num2);
+            console.log(result);
+            document.getElementById("btn-success").disabled = false;
+        }
+
+        function checkAnswer(){
+            let answer = document.getElementById("input").value;
+            if(answer === result){
+                MaxScore++;
+                score++;
+                
+                document.getElementById("score").innerHTML = ("คะแนน: " + score);
+                document.getElementById("MaxScore").innerHTML = ("ข้อที่: " + MaxScore);
+                document.getElementById("input").value = "";
+
+                num1 = parseInt((Math.random() * 99) + 1);
+                num2 = parseInt((Math.random() * 99) + 1);
+                oper = parseInt((Math.random() * 4) + 1);
+
+                console.log(parseInt(num1));
+                console.log(parseInt(oper));
+                console.log(parseInt(num2));
+                document.getElementById("num1").innerHTML = (num1);
+
+                if(oper === 1){
+                    document.getElementById("operator").innerHTML = ("+");
+                    result = num1 + num2;
+                    result = result.toFixed(1);
+                }else if(oper === 2){
+                    document.getElementById("operator").innerHTML = ("-");
+                    result = num1 - num2;
+                    result = result.toFixed(1);
+                }else if(oper === 3){
+                    document.getElementById("operator").innerHTML = ("x");
+                    result = num1 * num2;
+                    result = result.toFixed(1);
+                }else if(oper === 4){
+                    document.getElementById("operator").innerHTML = ("÷");
+                    result = num1 / num2;
+                    result = result.toFixed(1);
+                }
+                document.getElementById("num2").innerHTML = (num2);
+                console.log(result);
+
+            }else if(answer != result){
+                document.getElementById("num2").innerHTML = (num2);
+                console.log(result);
+                if(answer == ""){
+                    alert("ยังไม่ได้ใส่คำตอบ");
+                    document.getElementById("input").value = "";
+                    document.getElementById("MaxScore").innerHTML = ("ข้อที่: " + MaxScore);
+                }else{
+                    document.getElementById("input").value = "";
+                    MaxScore++;
+                    document.getElementById("MaxScore").innerHTML = ("ข้อที่: " + MaxScore);
+                    num1 = parseInt((Math.random() * 99) + 1);
+                num2 = parseInt((Math.random() * 99) + 1);
+                oper = parseInt((Math.random() * 4) + 1);
+
+                console.log(parseInt(num1));
+                console.log(parseInt(oper));
+                console.log(parseInt(num2));
+                document.getElementById("num1").innerHTML = (num1);
+
+                if(oper === 1){
+                    document.getElementById("operator").innerHTML = ("+");
+                    result = num1 + num2;
+                    result = result.toFixed(1);
+                }else if(oper === 2){
+                    document.getElementById("operator").innerHTML = ("-");
+                    result = num1 - num2;
+                    result = result.toFixed(1);
+                }else if(oper === 3){
+                    document.getElementById("operator").innerHTML = ("x");
+                    result = num1 * num2;
+                    result = result.toFixed(1);
+                }else if(oper === 4){
+                    document.getElementById("operator").innerHTML = ("÷");
+                    result = num1 / num2;
+                    result = result.toFixed(1);
+                }
+                document.getElementById("num2").innerHTML = (num2);
+                console.log(result);
+                }
+            }
+
+            document.getElementById("btn-secondary").disabled = false;
+        }
+
+        function reset(){
+
+            document.getElementById("score").innerHTML = ("คะแนน: " + score);
+            document.getElementById("MaxScore").innerHTML = ("ข้อที่: " + MaxScore);
+            let sum = MaxScore - score;
+            num1 = parseInt((Math.random() * 99) + 1);
+                num2 = parseInt((Math.random() * 99) + 1);
+                oper = parseInt((Math.random() * 4) + 1);
+
+                console.log(parseInt(num1));
+                console.log(parseInt(oper));
+                console.log(parseInt(num2));
+                document.getElementById("num1").innerHTML = (num1);
+
+                if(oper === 1){
+                    document.getElementById("operator").innerHTML = ("+");
+                    result = num1 + num2;
+                    result = result.toFixed(1);
+                }else if(oper === 2){
+                    document.getElementById("operator").innerHTML = ("-");
+                    result = num1 - num2;
+                    result = result.toFixed(1);
+                }else if(oper === 3){
+                    document.getElementById("operator").innerHTML = ("x");
+                    result = num1 * num2;
+                    result = result.toFixed(1);
+                }else if(oper === 4){
+                    document.getElementById("operator").innerHTML = ("÷");
+                    result = num1 / num2;
+                    result = result.toFixed(1);
+                }
+                document.getElementById("num2").innerHTML = (num2);
+                console.log(result);
+                alert("ได้คะแนน " + score + " คะแนนจากทั้งหมด " + MaxScore + " ข้อ");
+                score = 0;
+                MaxScore = 0;
+                document.getElementById("score").innerHTML = ("คะแนน: " + score);
+                document.getElementById("MaxScore").innerHTML = ("ข้อที่: " + MaxScore);
+
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

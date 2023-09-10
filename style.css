@@ -1,0 +1,23 @@
+h1{
+    text-align: center;
+}
+#score{
+    text-align: right;
+}
+#MaxScore{
+    text-align: right;
+}
+.btn{
+    margin-top: 100px;
+    height: 60px;
+}
+.col-3{
+    margin-top: 100px;
+}
+.row{
+    padding: 200px;
+
+}
+.item1{
+    border: 1px solid green;
+}
